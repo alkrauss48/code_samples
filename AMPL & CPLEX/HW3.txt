@@ -1,0 +1,14 @@
+#HW 3
+reset;
+option solver cplex;
+var x1 >= 0, integer;
+var x2 >= 0, integer;
+var x3 >= 0, integer;
+maximize Z: 50*x1 + 20*x2 + 25*x3;
+subject to A: 9*x1 + 3*x2 + 5*x3 <= 500;
+subject to B: 5*x1 + 4*x2 <= 350;
+subject to C: 3*x1 + 2*x3 <= 150;
+subject to D: x3 <= 20;
+solve;
+expand;
+display x1, x2, x3; 

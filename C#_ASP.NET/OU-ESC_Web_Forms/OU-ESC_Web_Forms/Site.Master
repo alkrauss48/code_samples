@@ -1,0 +1,63 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="site.master.cs" Inherits="CSCWeb.MasterPages.site" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="Head1" runat="server">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <link rel="Shortcut Icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="Stylesheet" type="text/css" href="/Style/master.css" />
+    <link rel="Stylesheet" type="text/css" href="/Style/jquery-ui-1.8.2.custom.css" />
+    <script type="text/javascript" src="../Script/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="../Script/jquery-ui-1.8.2.custom.min.js"></script>
+    <script type="text/javascript" src="../Script/main.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="container">
+        <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" />
+        <div class="roundedcorners"><b class="b1">.</b><b class="b2">.</b><b class="b3">.</b><b class="b4">.</b></div>
+        <div style="background-color: #fff; width: 100%">
+        <div style="background-color: #fff; padding-left: 8px; padding-top: 4px; padding-bottom: 4px; height: 75px;">
+            <div style="width: 90px; float: left">
+                <img alt="FAA Logo" src="../Images/head_logo.png" title="FAA Logo" /></div>
+            <div style="border-left: 2px solid #ccc; margin-left: 90px; height: 46px; font-size: 20pt; margin: 16px 0 10px 0; padding: 6px 0 0 12px">
+                <span style="color: #005BBB; font-weight: bolder">PC Helpdesk</span>&nbsp;<span style="font: Arial; font-weight: bold">Web</span></div>
+        </div>
+        <div style="width: 100%; height: auto; display: inline-block;">
+        <div style="float: left; height: auto; width: 789px;">
+            <div id="TopMenu" style="background-color: #fff; padding-left: 11px; height: 52px;">
+                <asp:Xml ID="TopNav" runat="server"></asp:Xml>
+            </div>
+            <div id="Menu" style="padding-left: 190px; padding-bottom: 6px; background-color: #fff;">
+                <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" StartingNodeUrl="~/default.aspx" />
+                <asp:SiteMapPath ID="SiteNav" runat="server" NodeStyle-CssClass="nav2" PathSeparator=" :: " CssClass="siteMap" SkipLinkText="Skip breadcrumb">
+                </asp:SiteMapPath>
+            </div>
+            <div style="background-color: #fff; padding: 4px 11px 4px 11px">
+                <asp:SiteMapDataSource ID="DS2" runat="server" ShowStartingNode="false" StartingNodeOffset="1" StartingNodeUrl="~/default.aspx" />
+                <asp:Menu ID="LeftNav" runat="server" DataSourceID="DS2" MaximumDynamicDisplayLevels="0">
+                </asp:Menu>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div id="QuickLinks" style=" margin-left: 790px; margin-right: 20px; height: auto">
+            <div class="box">
+                <h1>Quick Links</h1>
+                <asp:Xml ID="QL" runat="server" DocumentSource="~/Xml/quick_links.xml" TransformSource="~/Xsl/quick_links.xslt"></asp:Xml>
+            </div>
+        </div>
+        </div>
+        <div style="background: #fff url('../images/faa_footer.png') no-repeat 10px top; height:112px">
+            &nbsp;
+        </div>
+        </div>
+        <div class="roundedcorners">
+            <b class="b4">.</b><b class="b3">.</b><b class="b2">.</b><b class="b1">.</b></div>
+        </form>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+#Aaron Krauss
+reset;
+option solver cplex;
+var x12 >= 0; 
+var x14 >= 0;
+var x23 >= 0;
+var x24 >= 0;
+var x25 >= 0;
+var x35 >= 0;
+var x36 >= 0;
+var x46a >= 0;
+var x46b >= 0;
+var x56 >= 0;
+minimize Z: 10*x12 + x14 + 2*x23 + 11*x24 + 3*x25 + 12*x35 + 4*x36 + 14*x46a + 44*x46b + 15*x56;
+subject to C1: x12 + x14 <= 10;
+subject to C2: x23 + x24 + x25 <= 20;
+subject to C3: x35 + x36 - x23 = 0;
+subject to C4: x46a + x46b - x14 - x24 = 0;
+subject to C5: -x25 - x35 + x56 = -15;
+subject to C6: -x36 - x46a - x46b - x56 = -15;
+subject to C7: x14 <= 5;
+subject to C8: x23 <= 9;
+subject to C9: x25 <= 8;
+subject to C10: x36 <= 5;
+solve;
+expand;
+display x12, x14, x23, x24, x25, x35, x36, x46a, x46b, x56;
+
+

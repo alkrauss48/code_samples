@@ -1,0 +1,21 @@
+#Aaron Krauss
+reset;
+option solver cplex;
+var x >= 0; var y; var z <= 0;
+minimize Z: 2*x + 4*y - 6*z;
+subject to C1: 5*x - 7*y + 9*z = -22;
+subject to C2: x + 4*y - 2*z <= 14;
+subject to C3: 13*x - 11*y - 9*z >= 22;
+solve;
+expand;
+display x,y,z;
+
+reset;
+var a1; var a2 <= 0; var a3 >= 0;
+maximize K: -22*a1 + 14*a2 + 22*a3;
+subject to C4: 5*a1 + a2 + 13*a3 <= 2;
+subject to C5: -7*a1 + 4*a2 - 11*a3 = 4;
+subject to C6: 9*a1 - 2*a2 - 9*a3 >= -6;
+solve;
+expand;
+display a1, a2, a3;

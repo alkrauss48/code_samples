@@ -1,0 +1,6 @@
+x = linspace(1,10,100);
+y = exp(x) - cos(x) - 1;
+y2 = x;
+plot(x,y2, x y)
+hold o
+

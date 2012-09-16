@@ -1,0 +1,22 @@
+#Aaron Krauss
+reset;
+option solver cplex;
+var x11 >= 0, <= 1;
+var x12 >= 0, <= 1;
+var x13 >= 0, <= 1;
+var x14 >= 0, <= 1;
+var x15 >= 0, <= 1;
+var x21 >= 0, <= 1;
+var x22 >= 0, <= 1;
+var x23 >= 0, <= 1;
+var x24 >= 0, <= 1;
+var x25 >= 0, <= 1;
+maximize Z:  4*x11 + 2*x12 - 2*x14 - 4*x15 + 
+	    6*x21 + 4*x22 + 2*x23 - 2*x25;
+subject to C1: 4*x11 + 4*x12 + 4*x13 + 4*x14 + 4*x15 + 
+	       x21 + x22 + x23 + x24 + x25 <= 20;
+subject to C2: x11 + x12 + x13 + x14 + x15 + 
+	       4*x21 + 4*x22 + 4*x23 + 4*x24 + 4*x25 <= 20;
+solve;
+expand;
+display x11, x12, x13, x14, x15, x21, x22, x23, x24, x25;

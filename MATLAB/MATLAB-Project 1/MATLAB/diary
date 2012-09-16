@@ -1,0 +1,97 @@
+N = 100;
+p = .5; vo = 15; g = 9.8; vr = g/p;
+tvals = linspace(0,4.5,N);
+for i=1:N
+t = vals(i);
+fvals(i) = ((vo+vr)/p)*(1-(exp((-1*p)*t))) - (vr*t);
+value
+end
+??? Undefined function or method 'vals' for input arguments of type 'double'.
+
+N = 100;
+p = .5; vo = 15; g = 9.8; vr = g/p;
+tvals = linspace(0,4.5,N);
+for i=1:N
+t = tvals(i);
+fvals(i) = ((vo+vr)/p)*(1-(exp((-1*p)*t))) - (vr*t);
+value
+end
+??? Undefined function or variable 'value'.
+
+N = 50;                             % set the number of points
+tvals = linspace(0,1,N);            % get the time points
+for i=1:N                           % loop over t values
+   t = tvals(i);                    % get this value of t
+   fvals(i) = sin(exp(2.5*t));      % set the function value
+end                                 % end the loop
+plot(tvals,fvals)                   % plot the function f(t)
+xlabel('time'), ylabel('position')  % label the plot
+title('simple plot')
+N = 50;                             % set the number of points
+tvals = linspace(0,1,N);            % get the time points
+for i=1:N                           % loop over t values
+   t = tvals(i);                    % get this value of t
+   fvals(i) = sin(exp(2.5*t));      % set the function value
+end                                 % end the loop
+plot(tvals,fvals)                   % plot the function f(t)
+xlabel('time'), ylabel('position')  % label the plot
+title('simple plot')
+2
+
+ans =
+
+     2
+
+2.m
+??? 2.m
+      |
+Error: Unexpected MATLAB expression.
+
+script 2.m
+??? Attempt to execute SCRIPT script as a function:
+C:\Program Files\Matlab\R2007a\toolbox\matlab\lang\script.m
+
+doc script
+script 2
+??? Attempt to execute SCRIPT script as a function:
+C:\Program Files\Matlab\R2007a\toolbox\matlab\lang\script.m
+
+N = 100;
+p = .5; vo = 15; g = 9.8; vr = g/p;
+tvals = linspace(0,4.5,N);
+for i=1:N
+	t = tvals(i);
+	fvals(i) = ((vo+vr)/p)*(1-(exp((-1*p)*t))) - (vr*t);
+end
+plot(tvals,fvals)                   % plot the function f(t)
+xlabel('time'), ylabel('position')  % label the plot
+title('simple plot')
+N = 100;
+p = .5; vo = 15; g = 9.8; vr = g/p;
+tvals = linspace(0,4.5,N);
+for i=1:N
+	t = tvals(i);
+	fvals(i) = ((vo+vr)/p)*(1-(exp((-1*p)*t))) - (vr*t);
+end
+grid on
+plot(tvals,fvals)                   % plot the function f(t)
+xlabel('time'), ylabel('position')  % label the plot
+title('simple plot')
+doc grid
+ew
+??? Undefined function or variable 'ew'.
+
+cls
+??? Undefined function or variable 'cls'.
+
+doc clear
+ Overloaded functions or methods (ones with the same name in other directories)
+   <a href="matlab:doc simulink/clear">doc simulink/clear</a>
+
+clear
+doc clear
+ Overloaded functions or methods (ones with the same name in other directories)
+   <a href="matlab:doc simulink/clear">doc simulink/clear</a>
+
+clear all
+diary off

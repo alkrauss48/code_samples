@@ -1,0 +1,81 @@
+function [x] = Phase1(A, b)   
+% Usage:  [U,c] = gauss_elim(A, b)
+%
+% This routine performs Gaussian elimination on the system Ax=b, converting 
+% it to the upper-triangular system Ux=c.  This routine should be followed
+% up with the routine upper_solve.m to obtain the solution x.
+%
+% Inputs:   A  matrix
+%           b  right-hand side vector
+% Outputs:  U  upper-triangular matrix
+%           c  modified right-hand side vector
+%
+% Daniel R. Reynolds
+% Math3315 / CSE3365
+% Spring 2010
+%
+
+% check input arguments for correct size
+normA = A;
+normB = b;
+[n,m] = size(b);
+[Arows,Acols] = size(A);
+if ((Arows ~= n) || (Acols ~= n))
+   disp('gauss_elim error: A and b are mis-matched');
+   return;
+end
+
+% loop over diagonals
+for k = 1:n-1
+   % perform elimination below this subdiagonal
+   for i = k+1:n
+      if (A(k,k) == 0) 
+	 disp(sprintf('gauss_elim failure: singular matrix (row %i)!',k));
+	 return;
+      end
+      m = A(i,k)/A(k,k);
+      A(i,k:n) = A(i,k:n) - A(k,k:n)*m;
+      b(i) = b(i) - b(k)*m;
+   end
+end
+disp('After Gaussian Elimination, A = ');
+disp(A);
+disp('b = ');
+disp(b);
+
+
+%end Gauss_elim
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%begin upper solve
+U = A;
+[n,m] = size(b);
+[Urows,Ucols] = size(U);
+if ((Urows ~= n) || (Ucols ~= n))
+   disp('upper_solve error: U and b are mis-matched');
+   return;
+end
+
+% allocate the solution vector
+x = zeros(size(b));
+
+% check for singular matrix
+if (any(diag(U)==0))
+   disp(sprintf('upper_solve error: singular matrix, abort!'));
+   return
+end
+
+% row-oriented backwards substitution algorithm
+for j=n:-1:1
+   % solve for this row of solution
+   x(j) = b(j)/U(j,j);
+
+   % update all subsequent rhs
+   for i=1:j-1
+      b(i) = b(i) - U(i,j)*x(j);
+   end
+end
+
+disp('After Upper Solve, the solution is \nx')
+disp(x);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

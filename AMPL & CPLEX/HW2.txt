@@ -1,0 +1,12 @@
+# HW 2
+reset;
+option solver cplex;
+var x1 >= 0;
+var x2 >= 0;
+maximize Z: 180 * x1 + 90 * x2;
+subject to C1: x1 <= 6;
+subject to C2: x2 <= 4;
+subject to C3: 6*x1 + 8*x2 <= 48;
+solve;
+expand;
+display x1,x2;

@@ -1,0 +1,22 @@
+%Aaron Krauss
+
+%Part 1 - Dallas Avg. Monthly Temperatures
+
+load dallas.txt;
+n = length(dallas);
+for i = 1:n
+    x1(i) = dallas(i,1);
+    fx1(i) = dallas(i,2);
+end
+
+dx = x1(2)-x1(1);                     % interval width
+z = linspace(-1+dx/2,1-dx/2,n-1)';  % midpoints of each interval                     % evaluate f at these points
+
+% call polyval_lagrange to compute the polynomial interpolant, 
+% and evaluate at each of the z values
+
+x1 = 8
+   p = polyval_lagrange(x1,fx1,z(8));
+   % store the interpolant values
+   x1New(i) = (x1(i+1) + x1(i))/2;
+   fx1New(i) = p;

@@ -1,0 +1,25 @@
+#Aaron Krauss
+#HW 12
+reset;
+option solver cplex;
+var LM >= 0, integer;
+var LC >= 0, integer;
+var LD >= 0, integer;
+var LL >= 0, integer;
+var JM >= 0, integer;
+var JC >= 0, integer;
+var JD >= 0, integer;
+var JL >= 0, integer;
+minimize Z: 4.5*LM + 7.8*LC + 3.6*LD + 2.9*LL + 4.9*JM + 7.2*JC + 4.3*JD + 3.1*JL;
+subject to C1: LM + JM = 1;
+subject to C2: LC + JC = 1;
+subject to C3: LD + JD = 1;
+subject to C4: LL + JL = 1;
+subject to C5: LM + LC + LD + LL = 2;
+subject to C6: JM + JC + JD + JL = 2;
+solve;
+expand;
+display LM, LC, LD, LL, JM, JC, JD, JL;
+printf"Aaron Krauss\n\n";
+printf"24498998\n\n";
+reset;

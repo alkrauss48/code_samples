@@ -1,0 +1,15 @@
+reset;
+option solver cplex;
+var H >= 0, <= 1;	
+var I >= -9, <= -2;	
+var J >= 2, <= 9;	
+var K >= 3, <= 6; 	
+var L >= 0, <= 1;
+maximize OBJ: 8*H+4*I+4*J+3*K+  L;
+subject to C1:      H-2*I+4*J -9*K+6*L <= -20.5;
+subject to C2:  -6*H+7*I-5*J+5*K-7*L >= -20.5;
+subject to C3: J <= 6;
+subject to C4: L = 1;
+solve;
+expand;
+display H, I, J, K, L;

@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"><!--Aaron Krauss' Calculator--><html><head>
+<style type="text/css">
+
+div.label	{ position:absolute;
+		  top:40px;
+		  left:50px;
+		  width:205px;
+		  height:20px;
+		  text-align:center;
+		  border-style:double;
+}
+
+div.display	{ position:absolute;
+		  top:65px;
+		  left:50px;
+		  width:200px;
+		  height:25px;
+		  border-style:solid;
+		  text-align:right;
+		  padding-right:5px;
+}
+		
+div.operator	{position:absolute;
+					top:65px;
+					left:260px;
+					width:10px;
+					height:25px;
+}
+
+button		{ width:50px;}
+
+button.btnPlus,
+button.btnMinus,
+button.btnMult,
+button.btnDivide,
+button.btnDecimal,
+button.btnEquals	{width:30px;}
+
+button.btn1	{ position:absolute;
+		  top:100px;
+		  left:50px;
+	
+}
+
+button.btn2	{ position:absolute;
+		  top:100px;
+		  left:100px;	
+}
+
+button.btn3	{ position:absolute;
+		  top:100px;
+		  left:150px;	
+}
+
+button.btn4	{ position:absolute;
+		  top:125px;
+		  left:50px;	
+}
+
+button.btn5	{ position:absolute;
+		  top:125px;
+		  left:100px;	
+}
+
+button.btn6	{ position:absolute;
+		  top:125px;
+		  left:150px;	
+}
+
+button.btn7	{ position:absolute;
+		  top:150px;
+		  left:50px;	
+}
+
+button.btn8	{ position:absolute;
+		  top:150px;
+		  left:100px;	
+}
+
+button.btn9	{ position:absolute;
+		  top:150px;
+		  left:150px;	
+}
+
+button.btn0	{ position:absolute;
+		  top:175px;
+		  left:100px;	
+}
+
+button.btnPlus	{ position:absolute;
+		  top:100px;
+		  left:200px;	
+}
+
+button.btnMinus	{ position:absolute;
+		  top:125px;
+		  left:200px;	
+}
+
+button.btnDecimal	{ position:absolute;
+		  	  top:150px;
+		  	  left:200px;	
+}
+
+button.btnMult		{ position:absolute;
+		  	  top:100px;
+		  	  left:230px;	
+}
+
+button.btnDivide	{ position:absolute;
+		  	  top:125px;
+		  	  left:230px;	
+}
+
+button.btnEquals	{ position:absolute;
+		  	  top:150px;
+		  	  left:230px;	
+}
+
+button.btnClear		{ position:absolute;
+		  	  top:175px;
+		  	  left:150px;	
+}	
+</style>
+
+<script type="text/javascript">
+
+eq = new Equation();
+
+function Equation(){
+	this.string1="";
+	this.string2="";
+	this.leftSide=0;
+	this.rightSide=0;
+	this.answer=0;
+	this.foundAnswer = false;
+	this.operator="";
+	this.opSelected = false;	
+}
+
+function dispClear(){
+	<!--Clears all contents of the Equation object and clears the display div-->
+	document.all.disp.innerText = "";	
+	document.all.op.innerText = "";	
+	eq.string1="";
+	eq.string2="";
+	eq.leftSide=0;
+	eq.rightSide=0;
+	eq.answer=0;
+	eq.foundAnswer = false;
+	eq.operator="";
+	eq.opSelected = false;
+}
+
+function numberPress(value){
+
+if(eq.opSelected == false){
+	
+	if(eq.foundAnswer == true){
+		eq.string1="";
+		eq.answer=0;
+		eq.foundAnswer=false;	
+	}
+	
+	<!--Making sure there aren't two decimal places for one string-->
+	if((eq.string1.indexOf(".") != -1) && value == '.'){
+		alert("You can't have two decimal points in one number!"); 
+		return;
+		}
+	else{
+		eq.string1 += value;
+		document.all.disp.innerText = "";
+		document.all.disp.innerText = eq.string1;
+		}
+	}
+else{
+	if((eq.string2.indexOf(".") != -1) && value == '.'){
+		alert("You can't have two decimal points in one number!"); 
+		return;
+		}
+	else{	
+		eq.string2 += value;
+		document.all.disp.innerText = "";
+		document.all.disp.innerText = eq.string2;	
+		}
+	}
+}
+
+function operatorPress(value){
+	if(eq.string1 == ""){
+		alert("You must first enter a value before you can select an operator!");
+		return;
+	}
+	
+	if(eq.string2 != ""){
+		equals();
+	}
+	
+	eq.opSelected = true;
+	eq.operator = value;
+	
+	document.all.op.innerText = value;
+	
+	if(eq.string2 != ""){
+		equals();
+	}
+}
+
+function equals(){
+	document.all.disp.innerText = ""
+	eq.leftSide = parseFloat(eq.string1);
+	eq.rightSide = parseFloat(eq.string2);
+	
+	if(eq.string2 != ""){
+		switch (eq.operator)
+		{
+			case '+':
+				eq.answer = eq.leftSide + eq.rightSide;
+				break;
+			case '-':
+				eq.answer = eq.leftSide - eq.rightSide;
+				break;
+			case '*':
+				eq.answer = eq.leftSide * eq.rightSide;
+				break;
+			case '/':
+				if(eq.rightSide==0){
+					alert("Undefined: Can't divide by zero");
+					dispClear();
+					return;	
+				}
+				eq.answer = eq.leftSide / eq.rightSide;
+				break;	
+		}
+	}else{
+		eq.answer = eq.leftSide;
+	}
+	
+	document.all.op.innerText = "";
+	document.all.disp.innerText = eq.answer;
+	
+	<!--Enables sequential operations to be completed with the existing answer-->
+	eq.string1 = eq.answer;
+	eq.string2 = "";
+	eq.opSelected = false;
+	eq.foundAnswer = true;
+}
+
+
+</script>
+
+</head><body>
+
+<!--Displaying Buttons-->
+
+<div class="label">Aaron Krauss' Calculator</div>
+
+<div class="display" id="disp"></div>
+
+<div class="operator" id="op"></div>
+
+<button class="btn1" onclick="numberPress(1)">1</button>
+
+<button class="btn2" onclick="numberPress(2)">2</button>
+
+<button class="btn3" onclick="numberPress(3)">3</button>
+
+<button class="btn4" onclick="numberPress(4)">4</button>
+
+<button class="btn5" onclick="numberPress(5)">5</button>
+
+<button class="btn6" onclick="numberPress(6)">6</button>
+
+<button class="btn7" onclick="numberPress(7)">7</button>
+
+<button class="btn8" onclick="numberPress(8)">8</button>
+
+<button class="btn9" onclick="numberPress(9)">9</button>
+
+<button class="btn0" onclick="numberPress(0)">0</button>
+
+<button class="btnPlus" onclick="operatorPress('+')">+</button>
+
+<button class="btnMinus" onclick="operatorPress('-')">-</button>
+
+<button class="btnMult" onclick="operatorPress('*')">*</button>
+
+<button class="btnDivide" onclick="operatorPress('/')">/</button>
+
+<button class="btnDecimal" onclick="numberPress('.')">.</button>
+
+<button class="btnEquals" onclick="equals()">=</button>
+
+<button class="btnClear" onclick="dispClear()">Clear</button>
+
+
+
+
+</body></html>

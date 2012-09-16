@@ -1,0 +1,14 @@
+#Aaron Krauss
+
+reset;
+option solver cplex;
+var x1 >=0, <= 1;  var x2 >=0, <=1;  var x3 >=0, <=1;  
+var x4 >=0, <=1;  var x5 >=0, <=1;
+maximize OBJ: 57*x1 + 82*x2 - 88*x3 - 83*x4 + 52*x5;
+subject to C1: 17*x1+82*x2-27*x3-33*x4+67*x5 <= 57;
+subject to C2: 29*x1+11*x2+17*x3+65*x4+73*x5 <= 119;
+subject to C3: x2 = 0;
+subject to C4: x5 = 1;
+solve;
+expand;
+display x1, x2, x3,x4,x5;

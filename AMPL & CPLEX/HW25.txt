@@ -1,0 +1,11 @@
+#aaron krauss
+reset;
+option solver cplex;
+var x1 >= 0, <= 2.5;
+var x2 >= 0, <= 2.5;
+var x3 >= 0, <= 2.5;
+var x4 >= 0, <= 3;
+maximize Z: 384.375*x1 + 656.625*x2 + 184.375*x3 - 1357*x4;
+solve;
+expand;
+display x1, x2, x3, x4; 

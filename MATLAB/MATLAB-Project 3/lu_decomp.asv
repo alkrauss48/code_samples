@@ -1,0 +1,39 @@
+function [L,U] = lu_decomp(A)
+% Usage:  [L,U] = lu_decomp(A)
+%
+% This routine splits teh matrix A up into the L and U decompositions of
+% itself, which are respectively lower and upper triangular matrices.
+%
+% Inputs:   A  matrix
+%           
+% Outputs:  U  upper-triangular matrix
+%           L  lower-triangular matrix
+%
+% Aaron Krauss
+% Math3315 / CSE3365
+% Spring 2010
+%
+
+% check input arguments for correct size
+[Arows,Acols] = size(A);
+if ((Arows ~= n) || (Acols ~= n))
+   disp('lu_decomp error: A is mis-matched');
+   return;
+end
+
+for x = 1:n
+    for y = 1:n
+
+% loop over diagonals
+for k = 1:n-1
+   % perform elimination below this subdiagonal
+   for i = k+1:n
+      if (A(k,k) == 0) 
+	 disp(sprintf('lu_decomp failure: singular matrix (row %i)!',k));
+	 return;
+      end
+      m = A(i,k)/A(k,k);
+      L(i,k) = m
+      A(i,k:n) = A(i,k:n) - A(k,k:n)*m;
+   end
+end

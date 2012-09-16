@@ -1,0 +1,19 @@
+reset;
+option solver cplex;
+
+set N;
+set M;
+param c{N} default 0;     # costs
+param b{M} default 0;     # right-hand-side
+param A{M,N} default 0;  # constraint matrix
+data data24.txt;
+display N, M;
+display c;	display b;	display A;
+
+var x{N} >= 0;
+minimize COST: sum{n in N} c[n]*x[n];
+subject to CONST {m in M}: 
+                          sum{n in N} A[m,n]*x[n] = b[m];
+expand;
+solve; 
+display x;

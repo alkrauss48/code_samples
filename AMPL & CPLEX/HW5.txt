@@ -1,0 +1,18 @@
+#HW 5
+reset;
+option solver cplex;
+var c1f1 >=0;
+var c2f1 >=0;
+var c3f1 >=0;
+var c1f2 >=0;
+var c2f2 >=0;
+var c3f2 >=0;
+minimize Z: 600 * c1f1 + 800 * c2f1 + 700 * c3f1 + 400 * c1f2 + 900 * c2f2 + 600 * c3f2;
+subject to C1: c1f1 + c1f2 = 300;
+subject to C2: c2f1 + c2f2 = 200;
+subject to C3: c3f1 + c3f2 = 400;
+subject to C4: c1f1 + c2f1 + c3f1 <= 400;
+subject to C5: c1f2 + c2f2 + c3f2 <= 500;
+solve;
+expand;
+display c1f1, c2f1, c3f1, c1f2, c2f2, c3f2;

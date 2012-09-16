@@ -1,0 +1,29 @@
+%Aaron Krauss
+
+%Part 1 - Dallas Avg. Monthly Temperatures
+
+load dallas.txt;
+n = length(dallas);
+for i = 1:n
+    x1(i) = dallas(i,1);
+    fx1(i) = dallas(i,2);
+end
+
+
+p1 = polyval_lagrange(x1, fx1, 8-(2/31));
+s1 = spline(x1,fx1, 8-(2/31));
+
+%%%%%% Question 2 %%%%%%
+
+load historical.txt;
+n = length(historical);
+
+for i = 1:n
+    x2(i) = historical(i,1);
+    fx2(i) = historical(i,2);
+end
+
+p2 = polyval_lagrange(x2, fx2, -44);
+s2 = spline(x2, fx2, -44);
+
+%%%%% Question 3 %%%%%%

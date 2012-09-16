@@ -1,0 +1,21 @@
+#HW 16
+reset;
+option solver cplex;
+var x >= 0 , integer;
+var y >= 0 , integer;
+var z >= 0 , integer;
+maximize A: 2*x + 98*y + 26*z;
+subject to c1: 93*x + 21*y + 83*z >= 612;
+subject to c2: 60*x + 70*y + 34*z <= 562;
+subject to c3: x <= 6;
+subject to c4: y <= 7;
+subject to c5: z <= 5;
+
+#subject to c6: x >= 2;
+#subject to c7: y <= 4;
+#subject to c8: z >= 5;
+#subject to c9: y >= 4; 
+
+solve;
+expand;
+display x, y, z;

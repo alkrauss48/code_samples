@@ -1,0 +1,14 @@
+reset;
+option solver cplex;
+var A >= 0;  
+var B <= 0; 
+var C binary;
+var D >= 5, <= 10;  
+var E >= 10, <= 20;
+maximize OBJ: 8*A - 400*B + 3*C + 7*D + 8*E;
+subject to C1: 84*A-62*B+25*C+72*D+7*E <= 926;
+subject to C2: 57*A+17*B+82*C-52*D+88*E >= 1118;
+subject to C3: E >= 18;
+solve;
+expand;
+display A, B, C, D, E;
