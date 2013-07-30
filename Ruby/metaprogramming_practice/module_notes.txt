@@ -1,0 +1,18 @@
+Include the module in a class, and the methods become instance methods
+of the class. If you include a module into a class while you're in
+another module, you'll have to use the send method. E.g.
+
+  base.send(:include, InstanceMethods)
+
+Include the module in the eigenclass of a class (via extend, inside the
+module), and the methods become class methods
+
+  base.extend(ClassMethods)
+    -or if the desired class methods are in the same module-
+  base.extend(self) 
+
+Include the module in the eigenclass of any generic object, and the
+methods become Singleton Methods of the object
+
+  obj = String.new
+  obj.extend(MyModule)
