@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  company: MyString
+  total_amount: 9.99
+  due_date: 2012-09-20
+
+two:
+  company: MyString
+  total_amount: 9.99
+  due_date: 2012-09-20

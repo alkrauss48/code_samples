@@ -1,0 +1,40 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+html body{
+  color:#ffffff;
+  background-image:url('background_blue.jpg');
+  font-family:"helvetica";
+  background-color:#Ff8877;
+}
+
+#error_explanation{
+  color:#000000;
+}
+
+th{
+  padding-right:12px;
+}
+
+table.breakdown td{
+  color:#ffff33;
+}
+
+table.breakdown th{
+  color:#3399ff;
+}
+
+h3.jump{
+  color:#cc9944;
+}

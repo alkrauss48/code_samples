@@ -1,0 +1,29 @@
+%h1 Listing members
+
+%table
+  %tr
+    %th Initials
+    %th First name
+    %th Last name
+    %th Birth date
+    %th
+    %th
+    %th
+
+  - @members.each do |member|
+    %tr
+      %td= member.initials
+      %td= member.first_name
+      %td= member.last_name
+      %td= member.birth_date
+      %td= link_to 'Show', member
+      %td= link_to 'Edit', edit_member_path(member)
+      %td= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' }
+%br
+= link_to 'New Member', new_member_path
+%br
+%h3{:class => "jump"}
+  = link_to 'Show Bills', '/bill'
+
+.graph
+  %iframe.member_pie{src: @chart}

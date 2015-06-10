@@ -1,0 +1,47 @@
+%p#notice= notice
+
+%p
+  %b Initials:
+  = @member.initials
+%p
+  %b First name:
+  = @member.first_name
+%p
+  %b Last name:
+  = @member.last_name
+%p
+  %b Birth date:
+  = @member.birth_date
+%br
+%h3
+  Breakdown for Member Payments:
+%table.breakdown
+  %tr
+    %th Bill ID
+    %th First Name
+    %th Last Name
+    %th Amount
+    %th Pay Date
+    %th Late Payment
+    %th Missed Payment
+    %th
+    - @breakdowns.each do |b|
+      %tr
+        %td= link_to b.bill.id, bill_path(b.bill)
+        %td= b.member.first_name
+        %td= b.member.last_name
+        %td= b.amount
+        %td= b.pay_date
+        %td= b.late_payment
+        %td= b.missed_payment
+        %td= link_to "Delete", [@member, b], :method => :delete, :confirm => "Are you sure?"
+.total
+  %b Total Paid:
+  = @total
+%br
+#pic
+  = image_tag("#{@member.initials}.jpeg", alt: "No pic :(", size: "160x220") #960 x 640
+
+= link_to 'Edit', edit_member_path(@member)
+\|
+= link_to 'Back', members_path

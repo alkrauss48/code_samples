@@ -1,0 +1,19 @@
+= form_for @bill do |f|
+  - if @bill.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@bill.errors.count, "error")} prohibited this bill from being saved:"
+      %ul
+        - @bill.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :company
+    = f.text_field :company
+  .field
+    = f.label :total_amount
+    = f.text_field :total_amount
+  .field
+    = f.label :due_date
+    = f.date_select :due_date
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  amount: 9.99
+  pay_date: 2012-09-20
+  late_payment: false
+  missed_payment: false
+  member: 
+  bill: 
+
+two:
+  amount: 9.99
+  pay_date: 2012-09-20
+  late_payment: false
+  missed_payment: false
+  member: 
+  bill: 

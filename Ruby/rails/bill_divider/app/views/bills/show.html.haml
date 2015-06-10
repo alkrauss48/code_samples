@@ -1,0 +1,69 @@
+%p#notice= notice
+
+%p
+  %b Company:
+  = @bill.company
+%p
+  %b Total amount:
+  = @bill.total_amount
+%p
+  %b Due date:
+  = @bill.due_date
+%br
+%h3
+  Breakdown for Bill:
+%table{:class => "breakdown"}
+  %tr
+    %th Member ID
+    %th First Name
+    %th Last Name
+    %th Amount
+    %th Pay Date
+    %th Late Payment
+    %th Missed Payment
+    %th
+    - @bill.breakdowns.each do |b|
+      -b.member_id = 1 if b.member.nil?
+      %tr
+        %td= link_to "#{b.member.id}", member_path(b.member)
+        %td= b.member.first_name
+        %td= b.member.last_name
+        %td= b.amount
+        %td= b.pay_date
+        %td= b.late_payment
+        %td= b.missed_payment
+        %td= link_to "Delete", [@bill, b], :method => :delete, :confirm => "Are you sure?"
+%p{:style => "color:#00ff00;"}
+  %b Total Paid:
+  = @total_paid
+%p{:style => "color:#ff0000;"}
+  %b Total left:
+  = @bill.total_amount.to_d - @total_paid
+%br
+%table.bottom
+  %tr
+    %td
+      = form_for [@bill, @bill.breakdowns.build] do |f|
+        %p
+          %b Amount:
+          = f.text_field :amount
+        %p
+          %b Pay date:
+          = f.date_select :pay_date
+        %p
+          %b Late payment:
+          = f.check_box :late_payment
+        %p
+          %b Missed payment:
+          = f.check_box :missed_payment
+        %p
+          %b Member:
+          = f.collection_select(:member_id, Member.all, :id, :last_name)
+        =f.submit "Create Breakdown"
+      = link_to 'Edit', edit_bill_path(@bill)
+      \|
+      = link_to 'Back', bills_path
+    %td
+      %input{type: 'button', value: 'Calculator', onclick: ""}
+      .graph
+        %iframe.bill_bar{src: @chart}

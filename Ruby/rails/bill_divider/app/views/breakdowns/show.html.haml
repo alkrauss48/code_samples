@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Amount:
+  = @breakdown.amount
+%p
+  %b Pay date:
+  = @breakdown.pay_date
+%p
+  %b Late payment:
+  = @breakdown.late_payment
+%p
+  %b Missed payment:
+  = @breakdown.missed_payment
+%p
+  %b Member:
+  = @breakdown.member
+%p
+  %b Bill:
+  = @breakdown.bill
+
+= link_to 'Edit', edit_breakdown_path(@breakdown)
+\|
+= link_to 'Back', breakdowns_path

@@ -1,0 +1,29 @@
+%h1 Listing breakdowns
+
+%table
+  %tr
+    %th Amount
+    %th Pay date
+    %th Late payment
+    %th Missed payment
+    %th Member
+    %th Bill
+    %th
+    %th
+    %th
+
+  - @breakdowns.each do |breakdown|
+    %tr
+      %td= breakdown.amount
+      %td= breakdown.pay_date
+      %td= breakdown.late_payment
+      %td= breakdown.missed_payment
+      %td= breakdown.member
+      %td= breakdown.bill
+      %td= link_to 'Show', breakdown
+      %td= link_to 'Edit', edit_breakdown_path(breakdown)
+      %td= link_to 'Destroy', breakdown, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Breakdown', new_breakdown_path

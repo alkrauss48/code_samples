@@ -1,0 +1,28 @@
+= form_for @breakdown do |f|
+  - if @breakdown.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@breakdown.errors.count, "error")} prohibited this breakdown from being saved:"
+      %ul
+        - @breakdown.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :amount
+    = f.text_field :amount
+  .field
+    = f.label :pay_date
+    = f.date_select :pay_date
+  .field
+    = f.label :late_payment
+    = f.check_box :late_payment
+  .field
+    = f.label :missed_payment
+    = f.check_box :missed_payment
+  .field
+    = f.label :member
+    = f.text_field :member
+  .field
+    = f.label :bill
+    = f.text_field :bill
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,13 @@
+// Place all the styles related to the bills controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+iframe.bill_bar{
+  height: 200px;
+  width:  300px;
+}
+
+table.bottom td{
+  /*space the columns out*/
+  padding-right:20px;
+}
