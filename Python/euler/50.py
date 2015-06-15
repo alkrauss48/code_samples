@@ -42,11 +42,14 @@ class LongestSum:
     def largest_count(self):
         return max(self.largest_counts)
 
+    # Trying to signify a private method
     def _remove_last_entries(self):
         self.largest_sum -= LongestSum.primes[self.index - 1]
         self.largest_count.pop()
 
 
+# index is the starting index in the array of all primes number that you want to
+# add up
 # Had to guess and check 3. I assumed 0 would produce the longest sum, since it
 # would include the lowest valued prime numbers. I was wrong.
 index = 3
