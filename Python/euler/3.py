@@ -4,25 +4,38 @@
 
 from prime_generator import get_primes
 
-primes = get_primes(10000)
-number = 600851475143
-factors = []
-index = 0
-final_prime = True
+class LargestPrime:
+    number = 600851475143
 
-print(number % primes[index])
+    def __init__(self, count):
+        self.primes         = get_primes(count)
+        self.factors        = []
+        self.index          = 0
+        self.final_prime    = True
+        self.number         = LargestPrime.number
 
-while (number not in primes):
-    if (len(primes) == index + 1):
-        final_prime = False
-        break
+    def build_factors(self):
+        while (self.number not in self.primes):
+            if (len(self.primes) == self.index + 1):
+                self.final_prime = False
+                break
 
-    if(number % primes[index] == 0):
-        factors.append(primes[index])
-        number /= primes[index]
-    else:
-        index += 1
+            if(self.number % self.__current_prime() == 0):
+                self.factors.append(self.__current_prime())
+                self.number /= self.__current_prime()
+            else:
+                self.index += 1
 
-print(number)
-print(factors)
-print(final_prime)
+    def max_factor(self):
+        if self.final_prime:
+            return self.number
+        else:
+            return max(self.factors)
+
+    def __current_prime(self):
+        return self.primes[self.index]
+
+l = LargestPrime(10000)
+l.build_factors()
+print(l.max_factor())
+print("Absolute Max Factor? {0}".format(l.final_prime))
