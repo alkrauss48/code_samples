@@ -139,7 +139,7 @@ function Equation(){
 }
 
 function dispClear(){
-	<!--Clears all contents of the Equation object and clears the display div-->
+	//Clears all contents of the Equation object and clears the display div
 	document.all.disp.innerText = "";	
 	document.all.op.innerText = "";	
 	eq.string1="";
@@ -162,7 +162,7 @@ if(eq.opSelected == false){
 		eq.foundAnswer=false;	
 	}
 	
-	<!--Making sure there aren't two decimal places for one string-->
+	//Making sure there aren't two decimal places for one string
 	if((eq.string1.indexOf(".") != -1) && value == '.'){
 		alert("You can't have two decimal points in one number!"); 
 		return;
@@ -239,7 +239,7 @@ function equals(){
 	document.all.op.innerText = "";
 	document.all.disp.innerText = eq.answer;
 	
-	<!--Enables sequential operations to be completed with the existing answer-->
+	//Enables sequential operations to be completed with the existing answer
 	eq.string1 = eq.answer;
 	eq.string2 = "";
 	eq.opSelected = false;
